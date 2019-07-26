@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text(
-            "Hello Mentor hello",
+            "Hello Mentor",
           style: TextStyle(color: Colors.white, fontSize: 20.0),
         ),
       ),
