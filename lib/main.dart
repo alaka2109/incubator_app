@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'my_card.dart';
+import 'carousel_1.dart';
+import 'carousel_2.dart';
+import 'carousel_3.dart';
+import 'carousel_4.dart';
 void main(){
   runApp(
       MaterialApp(
@@ -11,10 +15,38 @@ void main(){
 class HomePage extends StatefulWidget{
 
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
+  int index = 0;
+ static String picture1 = 'assets/Call of Sea1.jpg';
+ static String picture2 = 'assets/Disney Castle in Singapore.jpg';
+ static String picture3 = 'assets/Flower3.jpg';
+ static String picture4 = 'assets/Manali3.jpg';
+
+  List <String> photos = [picture1, picture2, picture3, picture4];
+  void navigatePage(int i){
+    setState(() {
+      if(photos[i] == picture1)
+        {
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => Carousel1()));
+        }
+      else if(photos[i] == picture2)
+      {
+        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => Carousel2()));
+      }
+      else if(photos[i] == picture3)
+      {
+        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => Carousel3()));
+      }
+      else
+        {
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => Carousel4()));
+        }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -69,13 +101,14 @@ class _HomePageState extends State<HomePage> {
                         child: Carousel(
                           boxFit: BoxFit.cover,
                           images: [
-                            AssetImage('assets/Call of Sea1.jpg'),
-                            AssetImage('assets/Disney Castle in Singapore.jpg'),
-                            AssetImage('assets/Flower3.jpg'),
-                            AssetImage('assets/Manali3.jpg'),
+                            AssetImage(picture1),
+                            AssetImage(picture2),
+                            AssetImage(picture3),
+                            AssetImage(picture4),
                           ],
                           animationCurve: Curves.fastOutSlowIn,
                           animationDuration: Duration(milliseconds: 2000),
+                          onImageTap: (index) => navigatePage(index),
                         ),
                       )
                    ),
